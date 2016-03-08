@@ -280,7 +280,9 @@ fillOutWidgets = (widgets, updateUICallback) ->
         widget.maxValue     = widget.default + 1
         widget.stepValue    = 1
       when "inputBox"
-        widget.currentValue = widget.value
+        widget.currentValue = widget.value.replace(/\\n/g, '\n')
+        if widget.currentValue == 'NIL'
+          widget.currentValue = ''
       when "button"
         if widget.forever then widget.running = false
         do (widget) ->
